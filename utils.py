@@ -18,7 +18,7 @@ def process_case_data(
     filename,
     countries_list=["Pakistan", "Chad", "Ethiopia", "Madagascar", "Nigeria"],
     long_return = False,
-):
+    ):
     """
     Process raw WHO case data for use in seasonality profile regression.
     """
@@ -91,6 +91,26 @@ def process_case_data(
             index="time", columns="Country", values="case_ratio_adjusted"
         )
         return tr_data
+
+def process_sia_calendar(filename):
+    """
+    Simple function to deal with date processing in the SIA calendar
+    """
+
+    sia_cal = pd.read_csv("data\\Summary_MR_SIA.csv",
+                          header=1,
+                          usecols=["Country","Start date","End date",
+                                    "Target population","Reached population"],
+                          )
+    sia_cal["time"] = pd.to_datetime(sia_cal["Start date"]\
+                    .str.replace("-","/15/20"),
+                    errors="coerce")
+    sia_cal["doses"] = pd.to_numeric(sia_cal["Reached population"]\
+                                    .str.replace(" ",""))
+    sia_cal["doses"] = sia_cal["doses"].fillna(
+        pd.to_numeric(sia_cal["Target population"]\
+                                    .str.replace(" ","")))
+    return sia_cal
 
 def axes_setup(axes):
     """
