@@ -28,18 +28,6 @@ plt.rcParams["axes.linewidth"] = 1.0
 plt.rcParams["axes.formatter.use_mathtext"] = True
 plt.rcParams["mathtext.fontset"] = "cm"
 
-## Crayola 8 pack
-c8c = {
-    "red": "#ED0A3F",
-    "orange": "#FF8833",
-    "yellow": "#FBE870",
-    "green": "#01A638",
-    "blue": "#0066FF",
-    "violet": "#803790",
-    "brown": "#AF593E",
-    "black": "#000000",
-}
-
 if __name__ == "__main__":
 
     ## Get the TSIR profile estimates
