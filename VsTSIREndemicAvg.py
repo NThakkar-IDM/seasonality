@@ -14,9 +14,6 @@ from Profiles import ProfileRegression
 from utils import process_case_data,\
                   axes_setup
 
-## For zoom insets
-from matplotlib.patches import ConnectionPatch
-
 ## Plot environment
 plt.rcParams["font.size"] = 22.0
 plt.rcParams["font.family"] = "serif"
