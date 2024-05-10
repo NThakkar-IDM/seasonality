@@ -1,0 +1,6 @@
+# Landing space for script outputs which need not
+# be tracked - they are intended to be produced locally.
+# So ingore everything here...
+*
+# ... except this file
+!.gitignore
