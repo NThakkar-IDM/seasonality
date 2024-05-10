@@ -89,7 +89,7 @@ def relative_susceptibility(alphas,
     ## Check stability
     success = (thetas > 0).all() & (vol_scale > 0)
 
-    return success, vol_scale, Zt, Zterr
+    return success, thetas, vol_scale, Zt, Zterr
 
 if __name__ == "__main__":
 
@@ -168,7 +168,7 @@ if __name__ == "__main__":
 
         ## Compute the relative susceptibility estimate, recomputing across years
         ## until you find a stable solution.
-        success, vol_scale, Zt, Zterr = relative_susceptibility(
+        success, _, vol_scale, Zt, Zterr = relative_susceptibility(
             pressure.loc[country].values,
             cases[country],
             vax,
