@@ -8,20 +8,20 @@ Note: Names are harmonized with the WHO spreadsheet by hand. """
 
 ## Countries with MCV SIAs
 msia = {"afghanistan","chad","democratic republic of the congo",
-		"ethiopia","nigeria","pakistan"}
+        "ethiopia","nigeria","pakistan"}
 
 ## Countries with MR campaigns
 mr = {"bangladesh","burkina faso","burundi","cambodia","cameroon",
-	  "gambia","ghana","india","indonesia","kenya","lesotho","malawi",
-	  "myanmar","papua new guinea","rwanda","sao tome and principe",
-	  "senegal","solomon islands","united republic of tanzania","viet nam",
-	  "yemen","zambia","zimbabwe"}
+      "gambia","ghana","india","indonesia","kenya","lesotho","malawi",
+      "myanmar","papua new guinea","rwanda","sao tome and principe",
+      "senegal","solomon islands","united republic of tanzania","viet nam",
+      "yemen","zambia","zimbabwe"}
 
 ## Countries with second dose campaigns
 msd = {"bangladesh","burkina faso","burundi","cambodia","eritrea","gambia",
-	   "ghana","democratic people's republic of korea","malawi","mozambique","myanmar",
-	   "nepal","papua new guinea","rwanda","sao tome and principe","senegal",
-	   "sierra leone","united republic of tanzania","viet nam","zambia","zimbabwe"}
+       "ghana","democratic people's republic of korea","malawi","mozambique","myanmar",
+       "nepal","papua new guinea","rwanda","sao tome and principe","senegal",
+       "sierra leone","united republic of tanzania","viet nam","zambia","zimbabwe"}
 
 ## Extras
 extras = {"somalia","madagascar"}
