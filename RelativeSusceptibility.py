@@ -94,7 +94,7 @@ def relative_susceptibility(alphas,
 if __name__ == "__main__":
 
     ## countries (plotting built for only 3)
-    countries_list = ["Chad","Kenya","Bangladesh"]
+    countries_list = ["Chad","Kenya","Nepal"]
     start_date = "2014-01-01"
 
     ## get the data

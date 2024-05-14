@@ -90,7 +90,7 @@ def axes_setup(axes):
 if __name__ == "__main__":
 
     ## Get the dataset
-    country = "nepal"
+    country = "chad"
     df = pd.read_pickle("..\\outputs\\modeling_dataset.pkl")
     df = df.loc[country]
     df = df.loc["2014-01-01":]
