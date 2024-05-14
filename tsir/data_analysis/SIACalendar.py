@@ -1,7 +1,6 @@
 """ SIACalendar.py
 
-This script is an attempt at an easily updatable sia calendar
-for Gavi countries. Primary source is the WHO excel spreadsheet found here:
+Source is the WHO spreadsheet found here:
 https://www.who.int/immunization/monitoring_surveillance/data/en/ """
 import sys
 import numpy as np
