@@ -1,6 +1,7 @@
 """ RI.py
 
 Tools to prepare RI timeseries using the WUENIC estimates for each country. """
+import os
 import sys
 
 ## For analysis and visualization
@@ -9,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 ## Import the set of gavi countries
-sys.path.append("..\\")
+sys.path.append(os.path.join(".."))
 from utils.gavi_countries import countries
 
 def get_raw_spreadsheet(vaccine,root,
@@ -24,7 +25,7 @@ def get_raw_spreadsheet(vaccine,root,
               "COVERAGE_CATEGORY_DESCRIPTION":str,
               "COVERAGE":np.float64}
     columns = list(dtypes.keys())
-    df = pd.read_csv(root+fname,
+    df = pd.read_csv(os.path.join(root,fname),
                        header=0,
                        usecols=columns,
                        dtype=dtypes,
@@ -89,7 +90,7 @@ def GetCoverageSeries(vaccine,root,
 if __name__ == "__main__":
 
     ## Get the data
-    annual_coverage = GetCoverageSeries("MCV2","..\\..\\data\\",
+    annual_coverage = GetCoverageSeries("MCV2",os.path.join("..","..","data"),
                                         fname="coverage_estimates_Aug2023.csv",
                                         countries=countries,
                                         years=(2009,2023))
@@ -103,7 +104,7 @@ if __name__ == "__main__":
     coverage = annual_coverage.groupby("country").apply(interpolation)
 
     ## Serialize the result
-    coverage.to_pickle("..\\..\\outputs\\{}.pkl".format(coverage.name))
+    coverage.to_pickle(os.path.join("..","..","outputs","{}.pkl".format(coverage.name)))
 
     ## Plot the interpolation, etc.
     test_country = "chad"

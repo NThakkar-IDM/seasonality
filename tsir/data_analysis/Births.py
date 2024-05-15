@@ -1,6 +1,7 @@
 """ Births.py
 
 Tools to prepare the WoldBank population and crude birth rate datasets."""
+import os
 import sys
 
 ## For analysis and visualization
@@ -9,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 ## Import the set of gavi countries
-sys.path.append("..\\")
+sys.path.append(os.path.join(".."))
 from utils.gavi_countries import countries
 
 ## Internal helper functions
@@ -21,7 +22,7 @@ def get_raw_spreadsheet(root,fname,
     columns = ["Country Name"]+[str(c) for c in range(*years)]
     dtypes = {c:np.float64 for c in columns[1:]}
     dtypes["Country Name"] = str
-    df = pd.read_csv(root+fname,
+    df = pd.read_csv(os.path.join(root,fname),
                      skiprows=4,header=0,
                      usecols=columns,
                      dtype=dtypes)
@@ -89,7 +90,7 @@ def GetBirthsSeries(root,
 if __name__ == "__main__":
 
     ## Get the data
-    annual_births = GetBirthsSeries("..\\..\\data\\",
+    annual_births = GetBirthsSeries(os.path.join("..","..","data"),
                                     countries=countries,
                                     years=(2009,2022),
                                     suffix="_Aug2023")
@@ -100,7 +101,7 @@ if __name__ == "__main__":
     births = annual_births.groupby("country").apply(interpolation)
 
     ## Serialize the result
-    births.to_pickle("..\\..\\outputs\\births.pkl")
+    births.to_pickle(os.path.join("..","..","outputs","births.pkl"))
     print(births)   
 
     ## Plot the interpolation, etc.

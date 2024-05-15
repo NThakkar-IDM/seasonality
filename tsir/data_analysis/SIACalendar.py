@@ -2,19 +2,20 @@
 
 Source is the WHO spreadsheet found here:
 https://www.who.int/immunization/monitoring_surveillance/data/en/ """
+import os
 import sys
 import numpy as np
 import pandas as pd
 
 ## Country list for dataframe
 ## construction.
-sys.path.append("..\\")
+sys.path.append(os.path.join(".."))
 from utils.gavi_countries import countries
 
 if __name__ == "__main__":
 
     ## Process the SIA calendar
-    sia_calendar = pd.read_csv("..\\..\\data\\Summary_MR_SIA.csv",
+    sia_calendar = pd.read_csv(os.path.join("..","..","data","Summary_MR_SIA.csv"),
                           header=1,
                           usecols=["Country","Start date","End date",
                                     "Target population","Reached population"],
@@ -66,5 +67,5 @@ if __name__ == "__main__":
         target_pop.loc[rows] = sia.loc["target_pop"]
 
     ## Serialize the result
-    target_pop.to_pickle("..\\..\\outputs\\target_pop.pkl")
+    target_pop.to_pickle(os.path.join("..","..","outputs","target_pop.pkl"))
     print(target_pop.loc[target_pop != 0])
