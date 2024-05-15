@@ -3,6 +3,7 @@
 Script to take serialized timeseries from data_analysis\\, combine them, fill NaNs,
 and visualize data from particular countries. """
 import sys
+import os
 
 ## Standard imports
 import numpy as np
@@ -21,11 +22,11 @@ def GetCombinedDataset(serial_box=None,fillna=True):
     "cases","mcv1", "target_pop", and "births". """
 
     if serial_box is None:
-        serial_box = {"cases":"..\\outputs\\epi_curves.pkl",
-                      "mcv1":"..\\outputs\\mcv1.pkl",
-                      "mcv2":"..\\outputs\\mcv2.pkl",
-                      "births":"..\\outputs\\births.pkl",
-                      "target_pop":"..\\outputs\\target_pop.pkl"}
+        serial_box = {"cases":os.path.join("..","outputs","epi_curves.pkl"),
+                      "mcv1":os.path.join("..","outputs","mcv1.pkl"),
+                      "mcv2":os.path.join("..","outputs","mcv2.pkl"),
+                      "births":os.path.join("..","outputs","births.pkl"),
+                      "target_pop":os.path.join("..","outputs","target_pop.pkl")}
     else:
         assert set(serial_box.keys()) >= {"cases","mcv1","target_pop","births"},\
                "Must specify pickles for cases, mcv1, and births."
@@ -54,7 +55,7 @@ if __name__ == "__main__":
     ## serialize
     df = GetCombinedDataset()
     df = df.loc(axis=0)[:,:"2023-12-31"]
-    df.to_pickle("..\\outputs\\modeling_dataset.pkl")
+    df.to_pickle(os.path.join("..","outputs","modeling_dataset.pkl"))
     print(df)
 
     ## Make a simple plot
