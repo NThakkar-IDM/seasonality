@@ -2,7 +2,7 @@
 
 Post-campaign linear extrapolation tests for a few countries. """
 
-import sys
+import os
 
 ## Standard imports
 import numpy as np
@@ -73,7 +73,7 @@ if __name__ == "__main__":
 
     # Process raw case data
     data = process_case_data(
-        "data\\measlescasesbycountrybymonth_Mar2024.csv",
+        os.path.join("data","measlescasesbycountrybymonth_Mar2024.csv"),
         long_return=True,
         countries_list=countries_list,
     )
@@ -81,7 +81,7 @@ if __name__ == "__main__":
     tdata = data.loc[data["time"] <= training_date].copy()
 
     ## Get the SIA dose data
-    sia_cal = process_sia_calendar("data\\Summary_MR_SIA.csv")
+    sia_cal = process_sia_calendar(os.path.join("data","Summary_MR_SIA.csv"))
 
     ## Fit the seasonality model
     logt = ProfileRegression(tdata)
@@ -190,5 +190,5 @@ if __name__ == "__main__":
             color="k",
             transform=axes.transAxes,
             )
-    fig.savefig("outputs\\forecast_test.png")
+    fig.savefig(os.path.join("outputs","forecast_test.png"))
     plt.show()
