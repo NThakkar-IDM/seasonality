@@ -5,7 +5,7 @@ This is a repository of Python 3.8 code associated with the preprint [*Seasonali
 
 The main scripts are:
 1. `Profiles.py`, which contains the regression class and makes the paper's second figure.
-2. `VsTSIRProfiles.py`, which compares estimates to output from the more involved model in `tsir\`. This is the paper's third figure.
+2. `VsTSIRProfiles.py`, which compares estimates to output from the more involved model in `tsir/`. This is the paper's third figure.
 3. `VsTSIREndemicAvg.py`, which generates Figure 4 and 5a from the paper.
 4. `RelativeSusceptibility.py`, which generates the paper's sixth Figure.
 5. `ForecastTesting.py`, which generates each panel of the paper's final figure as the flag `_example` is modified.
