@@ -99,7 +99,7 @@ if __name__ == "__main__":
             ylim = axes2.get_ylim()
             axes2.set_ylim((1.1*ylim[0],1.3*ylim[1]))
             fig2.tight_layout()
-            fig2.savefig("outputs\\endemic_stability.png")
+            fig2.savefig(os.path.join("outputs","endemic_stability.png"))
 
         ## Plot relative susceptibiplity 
         t_avg_S = tsir_df["avg_S"].mean()
