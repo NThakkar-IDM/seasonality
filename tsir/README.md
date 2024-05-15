@@ -1,4 +1,4 @@
-# seasonality\\tsir
+# seasonality/tsir/
 The full TSIR model used for comparison purposes in the paper. The model is based on the time series model used in  [*Decreasing measles burden by optimizing campaign timing*](https://www.pnas.org/doi/10.1073/pnas.1818433116), 2019.
 
 There is a required order of operation to reproduce the paper results:
