@@ -2,6 +2,7 @@
 
 Fit a basic TSIR model and extrapolate under different scenarios (i.e. campaign timings and
 RI increases and decreases, etc.). """
+import os
 import sys
 
 ## Standard imports
@@ -91,7 +92,7 @@ if __name__ == "__main__":
 
     ## Get the dataset
     country = "chad"
-    df = pd.read_pickle("..\\outputs\\modeling_dataset.pkl")
+    df = pd.read_pickle(os.path.join("..","outputs","modeling_dataset.pkl"))
     df = df.loc[country]
     df = df.loc["2014-01-01":]
 
@@ -173,7 +174,7 @@ if __name__ == "__main__":
     axes[0].ticklabel_format(style='sci',scilimits=(0,0),axis="y")
     axes[1].ticklabel_format(style='sci',scilimits=(0,0),axis="y")
     fig.tight_layout()
-    fig.savefig("..\\outputs\\volatility_illustration.png")
+    fig.savefig(os.path.join("..","outputs","volatility_illustration.png"))
 
     ## Plot the results
     fig, axes = plt.subplots(2,1,sharex=True,figsize=(12,9))
@@ -227,7 +228,7 @@ if __name__ == "__main__":
     print("\nSaved output:")
     print(tsir_df)
     tsir_df.reset_index().to_csv(
-       "..\\data\\{}_tsir_df.csv".format(country.replace(" ",""))
+       os.path.join("..","data","{}_tsir_df.csv".format(country.replace(" ","")))
        )
 
     ## Finish up
