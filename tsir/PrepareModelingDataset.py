@@ -2,11 +2,10 @@
 
 Script to take serialized timeseries from data_analysis\\, combine them, fill NaNs,
 and visualize data from particular countries. """
-import sys
+
 import os
 
 ## Standard imports
-import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 

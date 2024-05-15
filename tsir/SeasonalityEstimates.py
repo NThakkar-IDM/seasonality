@@ -1,8 +1,8 @@
 """ SeasonalityEstimates.py
 
 Computing some seaonality profiles for comparison to the regression method. """
+
 import os
-import sys
 
 ## Standard imports
 import numpy as np

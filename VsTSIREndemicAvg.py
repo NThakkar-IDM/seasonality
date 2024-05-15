@@ -1,8 +1,8 @@
 """ VsTSIREndemicAvg.py
 
 Comparing seasonality-based endemic flucations with long-time TSIR outputs. """
+
 import os
-import sys
 
 ## Standard imports
 import numpy as np

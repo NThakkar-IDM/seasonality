@@ -3,7 +3,6 @@
 Fit a basic TSIR model and extrapolate under different scenarios (i.e. campaign timings and
 RI increases and decreases, etc.). """
 import os
-import sys
 
 ## Standard imports
 import numpy as np

@@ -3,7 +3,6 @@
 Comparing stability based susceptibility estimates to bespoke TSIR models."""
 
 import os
-import sys
 
 ## Standard imports
 import numpy as np

@@ -4,7 +4,7 @@ Regression class and example use case (Figure 2 in the paper) for estimating sea
 profiles from monthly case time series. """
 
 import os
-import sys
+
 import warnings
 
 ## Standard imports

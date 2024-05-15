@@ -5,7 +5,6 @@ Comparing the regression method to TSIR outputs (saved to a csv, via the public 
 workflow associated with Thakkar et al., PNAS 2019). """
 
 import os
-import sys
 
 ## Standard imports
 import numpy as np

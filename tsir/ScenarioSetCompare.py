@@ -2,7 +2,7 @@
 
 Fit a basic TSIR model and extrapolate under different scenarios (i.e. campaign timings and
 RI increases and decreases, etc.). """
-import sys
+
 import os
 
 ## Standard imports
