@@ -89,28 +89,30 @@ def GetCoverageSeries(vaccine,root,
 
 if __name__ == "__main__":
 
-    ## Get the data
-    annual_coverage = GetCoverageSeries("MCV2",os.path.join("..","..","data"),
-                                        fname="coverage_estimates_Aug2023.csv",
-                                        countries=countries,
-                                        years=(2009,2023))
-    
-    ## NaNs here are places without vaccine (MCV2) introduction
-    annual_coverage = annual_coverage.fillna(0)
+    for coverage_name in ["MCV1", "MCV2"]:
 
-    ## Interpolate the date after resampling
-    ## to the appropriate timescale
-    interpolation = lambda s: s.loc[s.name].resample("SM").interpolate()
-    coverage = annual_coverage.groupby("country").apply(interpolation)
+        ## Get the data
+        annual_coverage = GetCoverageSeries(coverage_name,os.path.join("..","..","data"),
+                                            fname="coverage_estimates_Aug2023.csv",
+                                            countries=countries,
+                                            years=(2009,2023))
+        
+        ## NaNs here are places without vaccine (MCV2) introduction
+        annual_coverage = annual_coverage.fillna(0)
 
-    ## Serialize the result
-    coverage.to_pickle(os.path.join("..","..","outputs","{}.pkl".format(coverage.name)))
+        ## Interpolate the date after resampling
+        ## to the appropriate timescale
+        interpolation = lambda s: s.loc[s.name].resample("SM").interpolate()
+        coverage = annual_coverage.groupby("country").apply(interpolation)
 
-    ## Plot the interpolation, etc.
-    test_country = "chad"
-    fig, axes = plt.subplots(figsize=(18,7))
-    axes.plot(annual_coverage.loc[test_country],
-              marker="o",ls="None",color="k")
-    axes.plot(coverage.loc[test_country])
-    fig.tight_layout()
-    plt.show()
+        ## Serialize the result
+        coverage.to_pickle(os.path.join("..","..","outputs","{}.pkl".format(coverage.name)))
+
+        ## Plot the interpolation, etc.
+        test_country = "chad"
+        fig, axes = plt.subplots(figsize=(18,7))
+        axes.plot(annual_coverage.loc[test_country],
+                marker="o",ls="None",color="k")
+        axes.plot(coverage.loc[test_country])
+        fig.tight_layout()
+        plt.show()
