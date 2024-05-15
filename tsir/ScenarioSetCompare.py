@@ -3,6 +3,7 @@
 Fit a basic TSIR model and extrapolate under different scenarios (i.e. campaign timings and
 RI increases and decreases, etc.). """
 import sys
+import os
 
 ## Standard imports
 import numpy as np
@@ -81,7 +82,7 @@ if __name__ == "__main__":
 
     ## Get the dataset
     country = "chad"
-    df = pd.read_pickle("..\\outputs\\modeling_dataset.pkl")
+    df = pd.read_pickle(os.path.join("..","outputs","modeling_dataset.pkl"))
     df = df.loc[country]
     df = df.loc["2014-01-01":]
 
@@ -189,7 +190,7 @@ if __name__ == "__main__":
                                             "avg_total","std_total",
                                             "avg_averted","std_averted","low_av","high_av",
                                             ])
-    scenario_comps.to_csv("..\\data\\{}_sia_comparisons.csv".format(country.replace(" ","")))
+    scenario_comps.to_csv(os.path.join("..","data","{}_sia_comparisons.csv".format(country.replace(" ",""))))
     print("\nFinal output:")
     print(scenario_comps)
     
