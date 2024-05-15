@@ -1,7 +1,8 @@
 """ SeasonalityEstimates.py
 
 Computing some seaonality profiles for comparison to the regression method. """
-import sys
+
+import os
 
 ## Standard imports
 import numpy as np
@@ -14,7 +15,7 @@ if __name__ == "__main__":
 
     ## Get the dataset
     countries = ["kenya","chad","ethiopia","nigeria","pakistan"]
-    dataset = pd.read_pickle("..\\outputs\\modeling_dataset.pkl")
+    dataset = pd.read_pickle(os.path.join("..","outputs","modeling_dataset.pkl"))
     df = dataset.loc(axis=0)[countries,"2012-01-01":]
     
     ## Print the dataset
@@ -56,4 +57,4 @@ if __name__ == "__main__":
     seasonality_profiles.columns = ["country","time","rel_reff","rel_reff_err"]
     print("\nFinal output:")
     print(seasonality_profiles)
-    seasonality_profiles.to_csv("..\\data\\tsir_profiles.csv")
+    seasonality_profiles.to_csv(os.path.join("..","data","tsir_profiles.csv"))

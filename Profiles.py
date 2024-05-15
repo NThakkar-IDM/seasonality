@@ -3,7 +3,8 @@
 Regression class and example use case (Figure 2 in the paper) for estimating seasonality
 profiles from monthly case time series. """
 
-import sys
+import os
+
 import warnings
 
 ## Standard imports
@@ -111,7 +112,7 @@ if __name__ == "__main__":
     ## Get the data and estimate the profiles
     # Process raw case data
     data = process_case_data(
-        "data\\measlescasesbycountrybymonth_Mar2024.csv",
+        os.path.join("data","measlescasesbycountrybymonth_Mar2024.csv"),
         long_return=True,
         countries_list=["Chad","Ethiopia","Kenya","Nigeria","Pakistan"],
     )
@@ -230,6 +231,6 @@ if __name__ == "__main__":
     labels = [labels[i] for i in order]
     axes[-1].legend(handles,labels,frameon=False, loc="center")
     fig.tight_layout()
-    fig.savefig("outputs\\seasonality_profiles.png")
+    fig.savefig(os.path.join("outputs","seasonality_profiles.png"))
     plt.show()
 

@@ -1,6 +1,7 @@
 """ CaseData.py
 
 Tools  to work with the WHO spreadsheet of case data by country and by month. """
+import os
 import sys
 
 ## For analysis and I/O
@@ -9,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 ## Import the set of gavi countries
-sys.path.append("..\\")
+sys.path.append(os.path.join(".."))
 from utils.gavi_countries import countries
 
 ## Internal helper functions
@@ -27,7 +28,7 @@ def get_raw_spreadsheet(root,
     dtypes["Year"] = np.int32
 
     ## Get the CSV
-    df = pd.read_csv(root+fname,
+    df = pd.read_csv(os.path.join(root,fname),
                     header=0,
                     usecols=columns,
                     dtype=dtypes)
@@ -87,7 +88,7 @@ def GetEpiCurveSeries(root,
 if __name__ == "__main__":
 
     ## Get the uninterpolated data
-    df = GetEpiCurveSeries("..\\..\\data\\",
+    df = GetEpiCurveSeries(os.path.join("..","..","data"),
                            countries=countries,
                            sm_smooth=False,sm_resample=False)
     print(df)
@@ -95,13 +96,13 @@ if __name__ == "__main__":
     ## As a test
     test_country = "chad"
     s = df.loc[test_country]
-    smoothed = GetEpiCurveSeries("..\\..\\data\\",
+    smoothed = GetEpiCurveSeries(os.path.join("..","..","data"),
                                 countries=countries)
     print(smoothed)
 
     ## Serialize the results
-    df.to_pickle("..\\..\\outputs\\raw_cases.pkl")
-    smoothed.to_pickle("..\\..\\outputs\\epi_curves.pkl")
+    df.to_pickle(os.path.join("..","..","outputs","raw_cases.pkl"))
+    smoothed.to_pickle(os.path.join("..","..","outputs","epi_curves.pkl"))
 
     ## Test plot
     fig, axes = plt.subplots(figsize=(18,7))

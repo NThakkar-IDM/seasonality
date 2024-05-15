@@ -4,7 +4,7 @@
 Comparing the regression method to TSIR outputs (saved to a csv, via the public data
 workflow associated with Thakkar et al., PNAS 2019). """
 
-import sys
+import os
 
 ## Standard imports
 import numpy as np
@@ -31,7 +31,7 @@ plt.rcParams["mathtext.fontset"] = "cm"
 if __name__ == "__main__":
 
     ## Get the TSIR profile estimates
-    tsir_df = pd.read_csv("data\\tsir_profiles.csv",
+    tsir_df = pd.read_csv(os.path.join("data","tsir_profiles.csv"),
         index_col=0,
         parse_dates=["time"],
         date_parser=pd.to_datetime,
@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
     ## Process the data and regress
     data = process_case_data(
-        "data\\measlescasesbycountrybymonth_Mar2024.csv",
+        os.path.join("data","measlescasesbycountrybymonth_Mar2024.csv"),
         long_return=True,
         countries_list=countries_list,
     )
@@ -96,5 +96,5 @@ if __name__ == "__main__":
    
     ## Finish up
     scatter_fig.tight_layout()
-    scatter_fig.savefig("outputs\\vs_tsir_scatter.png")
+    scatter_fig.savefig(os.path.join("outputs","vs_tsir_scatter.png"))
     plt.show()

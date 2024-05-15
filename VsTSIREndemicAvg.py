@@ -2,7 +2,7 @@
 
 Comparing seasonality-based endemic flucations with long-time TSIR outputs. """
 
-import sys
+import os
 
 ## Standard imports
 import numpy as np
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     # Process raw case data
     data = process_case_data(
-        "data\\measlescasesbycountrybymonth_Mar2024.csv",
+        os.path.join("data","measlescasesbycountrybymonth_Mar2024.csv"),
         long_return=True,
         countries_list=countries_list,
     )
@@ -56,9 +56,9 @@ if __name__ == "__main__":
     for i, country in enumerate(countries_list):
 
         ## Get the model outputs
-        tsir_df = pd.read_csv("data\\{}_sia_comparisons.csv".format(
-                    countries_list[c_to_i[country]]
-                    ),
+        tsir_df = pd.read_csv(os.path.join("data","{}_sia_comparisons.csv".format(
+                    countries_list[c_to_i[country]].lower()
+                    )),
                 index_col=0,
                 parse_dates=["sia_date"],
                 date_parser=pd.to_datetime,
@@ -99,7 +99,7 @@ if __name__ == "__main__":
             ylim = axes2.get_ylim()
             axes2.set_ylim((1.1*ylim[0],1.3*ylim[1]))
             fig2.tight_layout()
-            fig2.savefig("outputs\\endemic_stability.png")
+            fig2.savefig(os.path.join("outputs","endemic_stability.png"))
 
         ## Plot relative susceptibiplity 
         t_avg_S = tsir_df["avg_S"].mean()
@@ -143,9 +143,9 @@ if __name__ == "__main__":
     for i, country in enumerate(countries_list):
 
         ## Get the model outputs
-        tsir_df = pd.read_csv("data\\{}_sia_comparisons.csv".format(
-                    countries_list[c_to_i[country]]
-                    ),
+        tsir_df = pd.read_csv(os.path.join("data","{}_sia_comparisons.csv".format(
+                    countries_list[c_to_i[country]].lower()
+                    )),
                 index_col=0,
                 parse_dates=["sia_date"],
                 date_parser=pd.to_datetime,
@@ -193,6 +193,6 @@ if __name__ == "__main__":
         box, lines = axes[i].indicate_inset_zoom(mod_ax,edgecolor="k",lw=1)
 
     ## Finish up
-    fig.savefig("outputs\\vs_endemic_2country.png")
+    fig.savefig(os.path.join("outputs","vs_endemic_2country.png"))
     plt.show()
     
