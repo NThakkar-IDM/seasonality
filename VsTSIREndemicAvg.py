@@ -1,7 +1,7 @@
 """ VsTSIREndemicAvg.py
 
 Comparing seasonality-based endemic flucations with long-time TSIR outputs. """
-
+import os
 import sys
 
 ## Standard imports
@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     # Process raw case data
     data = process_case_data(
-        "data\\measlescasesbycountrybymonth_Mar2024.csv",
+        os.path.join("data","measlescasesbycountrybymonth_Mar2024.csv"),
         long_return=True,
         countries_list=countries_list,
     )
@@ -56,9 +56,9 @@ if __name__ == "__main__":
     for i, country in enumerate(countries_list):
 
         ## Get the model outputs
-        tsir_df = pd.read_csv("data\\{}_sia_comparisons.csv".format(
-                    countries_list[c_to_i[country]]
-                    ),
+        tsir_df = pd.read_csv(os.path.join("data","{}_sia_comparisons.csv".format(
+                    countries_list[c_to_i[country]].lower()
+                    )),
                 index_col=0,
                 parse_dates=["sia_date"],
                 date_parser=pd.to_datetime,
@@ -143,9 +143,9 @@ if __name__ == "__main__":
     for i, country in enumerate(countries_list):
 
         ## Get the model outputs
-        tsir_df = pd.read_csv("data\\{}_sia_comparisons.csv".format(
-                    countries_list[c_to_i[country]]
-                    ),
+        tsir_df = pd.read_csv(os.path.join("data","{}_sia_comparisons.csv".format(
+                    countries_list[c_to_i[country]].lower()
+                    )),
                 index_col=0,
                 parse_dates=["sia_date"],
                 date_parser=pd.to_datetime,
@@ -193,6 +193,6 @@ if __name__ == "__main__":
         box, lines = axes[i].indicate_inset_zoom(mod_ax,edgecolor="k",lw=1)
 
     ## Finish up
-    fig.savefig("outputs\\vs_endemic_2country.png")
+    fig.savefig(os.path.join("outputs","vs_endemic_2country.png"))
     plt.show()
     

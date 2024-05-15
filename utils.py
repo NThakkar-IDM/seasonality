@@ -97,7 +97,7 @@ def process_sia_calendar(filename):
     Simple function to deal with date processing in the SIA calendar
     """
 
-    sia_cal = pd.read_csv("data\\Summary_MR_SIA.csv",
+    sia_cal = pd.read_csv(filename,
                           header=1,
                           usecols=["Country","Start date","End date",
                                     "Target population","Reached population"],

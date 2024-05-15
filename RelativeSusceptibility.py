@@ -2,6 +2,7 @@
 
 Comparing stability based susceptibility estimates to bespoke TSIR models."""
 
+import os
 import sys
 
 ## Standard imports
@@ -100,7 +101,7 @@ if __name__ == "__main__":
     ## get the data
     tsir_dfs = {}
     for c in countries_list:
-        tsir_df = pd.read_csv("data\\{}_tsir_df.csv".format(c.lower()),
+        tsir_df = pd.read_csv(os.path.join("data","{}_tsir_df.csv".format(c.lower())),
                 index_col=0,
                 parse_dates=["index"],
                 date_parser=pd.to_datetime,
@@ -109,7 +110,7 @@ if __name__ == "__main__":
 
     # Process raw case data
     data = process_case_data(
-        "data\\measlescasesbycountrybymonth_Mar2024.csv",
+        os.path.join("data","measlescasesbycountrybymonth_Mar2024.csv"),
         long_return=True,
         countries_list=countries_list,
     )
@@ -117,7 +118,7 @@ if __name__ == "__main__":
     data = data.loc[data["time"] <= end_date]
 
     ## Get the SIA dose data
-    sia_cal = process_sia_calendar("data\\Summary_MR_SIA.csv")
+    sia_cal = process_sia_calendar(os.path.join("data","Summary_MR_SIA.csv"))
 
     ## Fit the seasonality model
     profiles = ProfileRegression(data)
@@ -246,5 +247,5 @@ if __name__ == "__main__":
 
     ## Finish up
     fig.tight_layout()
-    fig.savefig("outputs\\multi_susceptible_recon.png")
+    fig.savefig(os.path.join("outputs","multi_susceptible_recon.png"))
     plt.show()
