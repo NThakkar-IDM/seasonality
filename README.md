@@ -1,7 +1,7 @@
 # seasonality
 Estimating seasonality profiles and relative susceptibility from public, monthly, country-level measles time series data.
 
-This is a repository of Python 3.8 code associated with the preprint [*Seasonality and susceptibility from measles timeseries*](https://arxiv.org/abs/2205.02150), 2024. In the paper, we develop transmission-model-based statistical tools that can be used to estimate an empirical transmission seasonality profile and associated dynamic information on outbreak risk.
+This is a repository of Python 3.8 code associated with the preprint [*Seasonality and susceptibility from measles timeseries*](https://arxiv.org/abs/2405.09664), 2024. In the paper, we develop transmission-model-based statistical tools that can be used to estimate an empirical transmission seasonality profile and associated dynamic information on outbreak risk.
 
 The main scripts are:
 1. `Profiles.py`, which contains the regression class and makes the paper's second figure.
